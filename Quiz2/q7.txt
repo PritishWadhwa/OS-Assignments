@@ -1,0 +1,3 @@
+The given system is in a safe state.
+One of the possible safe order/sequence for processes to complete can be:
+P0-->P3-->P1-->P2-->P4
