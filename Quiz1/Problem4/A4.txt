@@ -1,0 +1,20 @@
+Multiple changes would be required in the long_add function so that it is able to 
+run in the 64 bit system. The changes required are:
+
+1.) All the registers used in the long_add function are the ones which can take in only 32 bit entries.
+those would be reuired to be changed
+2.) In 32 bit just for the sake of it, I have used stack pointers whereas in 64 bit I have used registers
+to store the addends for computing sum. This is just for a little variety in code and without it also, the code can run.
+
+The above two points were the changes in my code. Apart from these, there would be a difference
+int the commands used for compileing them.
+
+For long_add, the commands would be:
+	nasm -felf32 P4_1.asm -o P4_1.o
+	gcc -m32 P4_1.o P4.c -o P4_1
+	./P4_1
+
+whereas for extended_add, the commands would be:
+	nasm -felf64 P4_2.asm -o P4_2.o
+	gcc P4_2.o P4.c -o P4_2
+	./P4_2

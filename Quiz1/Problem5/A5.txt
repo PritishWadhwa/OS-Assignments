@@ -1,0 +1,21 @@
+For increasing efficiency, Long mode generally uses virtual addresses,
+multiple protective protocols and segmentation and paging protocols. 
+All this will cost some amount of memory. 
+However according to the question, we only have 320KB of RAM available.
+So using long mode would reduce the actual RAM available for our use.
+In the long mode, multiple libraries and drivers are present to increase 
+efficiency which eventually take up memory. 
+Since there is a restriction of 320KB RAM one should avoid such memory 
+costly features. 
+16 bit only has physical addressing and a simpler structure thus, 
+giving us higher amount of usable RAM out of the available 320KB. 
+Also, general size of memory pointer in long mode (64 bit) is 8 bytes as
+compared to the 2 bytes of real mode(16 bit). 
+Since memory pointer in long mode is 4 times more, it will only use up more memory 
+to store a single address thus by using real mode we would be able to use 
+more storage.
+
+Therefore due to the above reasons I will prefer real mode (16 bit mode only) 
+however in case there are specific requirements like using long data type or any 
+other requirements which require large 64 bit registers and/or better efficiency 
+of data then I will prefer 64 bit (long) mode.

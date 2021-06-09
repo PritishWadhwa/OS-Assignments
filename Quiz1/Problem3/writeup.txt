@@ -1,0 +1,9 @@
+part1.c file contains the code for the case 1 where a pointer to type long int is used to store the 8 64-bit integers in x.
+part2.c file contains the code for the case 2 where a pointer to type int is used to store the 16 32-bit integers in x.
+
+both the codes are pretty similar.
+In both a pointer is declared which points to the char array x.
+then a loop is run(8 times in first case and 16 times in second case) in which the values are stored in the array using the pointer.
+The values(generated using the rand function) are assigned to the location where the pointer is pointing currently and then the pointer is incremented by one(it increments by the size of the data type it points to)
+
+In the end, a for loop is used to print the values stored in the array using the pointer.

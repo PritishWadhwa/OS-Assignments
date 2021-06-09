@@ -1,0 +1,16 @@
+1. The C Program:- 
+The C program named P1_c.c is a C prpgram that contains a main function. 
+In the main function,two variables of data type long are initialized and are stored 
+with some values in them.
+Then these two variables are passed as arguments during the function call of checkGreater.
+
+2. The Assembly Program:- 
+In the assembly program, both _start and checkgreater have been made global functions.
+The start function writes two integer values in rsi and rdi registers which are
+then passed to the checkGreater function. 
+The check greater function compares the data present in rdi and rsi registers (calculating rsi-rdi), 
+and if rsi-rdi is less than or equal to 0 (x <= y) then the jl (jump if lesser) is met and 
+the control goes to the function named smaller from where 0 is printed using relevant syntax,
+if jl is not met then the control jumps to the function named larger (since x>y) 
+and 1 gets printed. 
+The ".rodata" section helps in building the messages("0" or "1") that are required to print

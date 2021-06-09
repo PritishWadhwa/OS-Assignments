@@ -1,0 +1,65 @@
+The command used to compile the given code is:
+gcc -S P2.c -o P2.s
+(assuming the name of c file is P2.c)
+
+The given code snippet, on compilation, gives a few warnings. The warnings are:
+P2.c:1:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
+ add(float a, float b)
+ ^~~
+P2.c: In function ‘add’:
+P2.c:3:20: warning: implicit declaration of function ‘round’ [-Wimplicit-function-declaration]
+     return (float)(round(a) + round(b));
+                    ^~~~~
+P2.c:3:20: warning: incompatible implicit declaration of built-in function ‘round’
+P2.c:3:20: note: include ‘<math.h>’ or provide a declaration of ‘round’
+
+
+The first warning is in the first line of the code itself. 
+The warning is generated because the return type of the function is not specified 
+when the function is defined. 
+The return statement indicates that the value being returned is of the type float
+so the first line 
+add(float a, float b) 
+can be changed to 
+float add(float a, float b)
+This will lead to the warning being removed. 
+
+Note: Even if any other return type like char,int, double, etc is used, 
+(except for void) then also the compilation of the code snippet won't 
+result in any warnings or errors.
+
+
+The next set of warnings are generated becuase of the usage of round() function 
+in the return statement.
+(The statement being: return (float)(round(a) + round(b)); )
+The round function is declared implicitly here, hence the compiler expects the 
+c program to contain either an explicit definition of the round function() 
+(absense of which leads to the warning:
+[-Wimplicit-function-declaration]
+) 
+or if the in built round() function is being referred then the
+corrsponding headerfile, <math.h> should be included as it contains the function 
+definition of the in built round() function. 
+
+
+NOTE: During the compilation, if we also use the -std=c90 command line option 
+and exexcute the following command for compilation:      
+gcc -S -std=c90  P2.c -o P2.s
+Then, the compilation will not lead to any errors/warnings as 
+-std=c90 diables certain features of gcc including predefined macros when compiling 
+C code. Hence, we can compile the code snippet without generating any warnings 
+or errors.
+
+Apart from the above warnings, error/warning message also contains
+
+/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o: In function `_start':
+(.text+0x20): undefined reference to `main'
+/tmp/ccsdQJIX.o: In function `add':
+P2.c:(.text+0x18): undefined reference to `round'
+P2.c:(.text+0x27): undefined reference to `round'
+collect2: error: ld returned 1 exit status
+
+The above message is generated irrespective of whether "-std=c90" is used or not.
+It is a system dependant message which indicates that in my system the math functions are not a part
+of my standard C library and have to be linked separately. This has to be done at the 
+preprocessing stage and not at the compilation stage.
